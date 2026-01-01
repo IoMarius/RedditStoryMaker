@@ -14,6 +14,17 @@ services:
       - /home/iomarius/docker/rsm:/app/data
     networks:
       - net-mesh
+    environment:
+      #openai
+      GPT_MODEL: gpt-4o-mini
+      GPT_API_KEY: your-key
+
+      #elevenlabs tts
+      ELEVENLABS_MODEL: eleven_flash_v2_5
+      ELEVENLABS_API_KEY: your-key
+
+      #telegram bot key
+      TELEGRAM_BOT_TOKEN: your-token
 
 networks:
   net-mesh:

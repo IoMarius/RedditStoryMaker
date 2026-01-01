@@ -5,7 +5,17 @@ services:
       dockerfile: Dockerfile
     container_name: storymaker
     env_file:
-      - .env
+      - stack.env
+    environment:
+      GPT_MODEL: gpt-4o-mini
+      GPT_API_KEY: your-key
+
+      #elevenlabs tts
+      ELEVENLABS_MODEL: eleven_flash_v2_5
+      ELEVENLABS_API_KEY: your-key
+
+      #telegram bot key
+      TELEGRAM_BOT_TOKEN: your-token
     volumes:
       - ./data:/app/data
     restart: unless-stopped

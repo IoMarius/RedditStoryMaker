@@ -1,0 +1,51 @@
+name: Build and deploy web RSM
+run-name: ${{ gitea.actor }} • ${{ gitea.event.head_commit.message }}
+
+on:
+  push:
+    branches: [master]
+
+env:
+  IMAGE_NAME: 192.168.1.3:5000/rsm
+  TAG: latest
+
+jobs:
+  build:
+    runs-on: ubuntu
+    container:
+      image: 192.168.1.3:5000/builder:latest
+    steps:
+      - name: Install git
+        run: apk add --no-cache git
+
+      - name: Checkout repository via SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p 2222 ioserver.taild1c667.ts.net >> ~/.ssh/known_hosts
+          git clone --branch master --depth 1 ssh://git@ioserver.taild1c667.ts.net:2222/iomarius/RedditStoryMaker.git .
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          file: Dockerfile
+          context: .
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          no-cache: true
+
+  #will deploy from portainer UI
+  # deploy:
+  #   runs-on: ubuntu
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+
+  #     - name: Pull latest image
+  #       run: docker pull ${{ env.IMAGE_NAME }}:${{ env.TAG }}
+
+  #     - name: Deploy stack
+  #       run: |
+  #         docker stack deploy -c deploy/docker_compose.yml rsm_bot

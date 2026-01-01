@@ -1,10 +1,7 @@
 ![alt text](header.png)
 
-# StoryMaker
-Automatic reddit storytelling video generator.
-
 ## Overview
-StoryMaker takes Reddit content and produces short storytelling videos by combining generated narration, thumbnails, and background footage. It is split into a lightweight bot interface and a core generation pipeline (formatting, TTS, thumbnailing, and video composition).
+RedditStoryMaker takes Reddit content and produces short storytelling videos by combining generated narration, thumbnails, and background footage. It is split into a lightweight bot interface and a core generation pipeline (formatting, TTS, thumbnailing, and video composition).
 
 ## Environment variables
 The project uses `python-dotenv` and reads a `.env` file when present. Important environment variables:

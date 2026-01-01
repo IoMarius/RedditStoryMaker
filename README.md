@@ -30,6 +30,24 @@ Put MP4 files in that `assets/video/` folder. Videos used as backgrounds work be
 
 Files should be plain MP4s; the pipeline will pick videos from this folder when composing backgrounds.
 
+## Target subreddits
+As in the example above, use the `/app/data` volume, create an `subreddits.json` file with this structure:
+```
+{
+    "Subs": [
+        {
+            "Name": "nosleep",
+            "Url" : "https://www.reddit.com/r/nosleep/.json"
+        },
+        {
+            "Name": "stories",
+            "Url": "https://www.reddit.com/r/stories/.json"
+        }
+    ]
+}
+```
+Important: Append the .json extension the the tareget subreddit url.
+
 ## Notes
 - Playwright is installed in the Dockerfile for any browser-based interactions.
 - The Dockerfile installs system libraries used for multimedia processing(ffmpeg).

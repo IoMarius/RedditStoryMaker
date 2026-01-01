@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 
 
+RUN pip install --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt    
 
 #for cpu that does not support x86-64v2 baseline optimization

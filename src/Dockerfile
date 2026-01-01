@@ -35,10 +35,11 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 
 
-# RUN pip install  --no-cache-dir -r requirements.txt    
+RUN pip install --no-cache-dir -r requirements.txt    
 
 #for cpu that does not support x86-64v2 baseline optimization
-RUN pip install --no-binary numpy --no-cache-dir -r requirements.txt    
+RUN pip uninstall -y numpy
+RUN pip install --no-binary :all: numpy
 
 RUN playwright install-deps
 RUN playwright install

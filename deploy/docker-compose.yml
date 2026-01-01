@@ -1,11 +1,8 @@
 services:
-  webapi:
+  rsm:
     image: 192.168.1.3:5000/rsm:${TAG:-latest}
-    # build:
-    #   context: "../microservices/Service1"
-    #   dockerfile: Service1/Dockerfile
     deploy:
-      mode: global
+      mode: replicated
       replicas: 1
       restart_policy:
         condition: on-failure
@@ -13,5 +10,11 @@ services:
       placement:
         constraints:
           - node.role == manager
+    volumes:
+      - /home/iomarius/docker/rsm:/app/data
     networks:
       - net-mesh
+
+networks:
+  net-mesh:
+    external: true

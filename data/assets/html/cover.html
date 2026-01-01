@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit-style Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f4f4f5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            max-width: 450px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            gap: 10px;
+        }
+
+        .profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e5e5;
+            flex-shrink: 0;
+        }
+
+        .header-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subreddit {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1c1c1e;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: #8e8e93;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .join-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-content {
+            padding: 0 16px 16px 16px;
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #1c1c1e;
+            margin-bottom: 12px;
+        }
+
+        .post-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #3c3c43;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            padding: 8px 8px 8px 16px;
+            gap: 16px;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #3c3c43;
+            transition: background 0.2s;
+        }
+
+        .action-button:hover {
+            background: #f4f4f5;
+        }
+
+        .vote-button {
+            padding: 4px;
+        }
+
+        .vote-count {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-button {
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card" id="cover-card">
+        <div class="card-header">
+            <img class="profile-image" src="profile.png">
+            <div class="header-info">
+                <span class="subreddit" id="subreddit-name">r/subredditname</span>
+                <span class="timestamp">• 7 hr. ago</span>
+            </div>
+            <div class="header-actions">
+                <button class="join-button">Join</button>
+                <button class="menu-button">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="4" r="1.5" fill="#3c3c43" />
+                        <circle cx="10" cy="10" r="1.5" fill="#3c3c43" />
+                        <circle cx="10" cy="16" r="1.5" fill="#3c3c43" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="card-content">
+            <h2 class="post-title" id="post-title">Your post title goes here</h2>
+            <p class="post-text" id="post-text">Your post text content goes here. This can be multiple paragraphs or a
+                longer piece of text.</p>
+        </div>
+
+        <div class="card-footer">
+            <div class="vote-count">
+                <button class="action-button vote-button">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 4L13 11H7L10 4Z" fill="#3c3c43" />
+                        <path d="M7 12H13V13H7V12Z" fill="#3c3c43" />
+                    </svg>
+                </button>
+                <span id="upvotes-count">5.8K</span>
+                <button class="action-button vote-button">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 16L7 9H13L10 16Z" fill="#3c3c43" />
+                        <path d="M7 8H13V7H7V8Z" fill="#3c3c43" />
+                    </svg>
+                </button>
+            </div>
+
+            <button class="action-button">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M5 6C5 4.89543 5.89543 4 7 4H13C14.1046 4 15 4.89543 15 6V14C15 15.1046 14.1046 16 13 16H7L5 18V6Z"
+                        stroke="#3c3c43" stroke-width="1.5" fill="none" />
+                </svg>
+                <span id="comments-count">563</span>
+            </button>
+
+            <!-- <button class="action-button">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 4C10 4 8 6 8 9C8 11 9 12 9 12C9 12 8 13 8 14.5C8 16 10 17 10 17" stroke="#3c3c43"
+                        stroke-width="1.5" fill="none" />
+                    <path d="M10 4C10 4 12 6 12 9C12 11 11 12 11 12C11 12 12 13 12 14.5C12 16 10 17 10 17"
+                        stroke="#3c3c43" stroke-width="1.5" fill="none" />
+                    <circle cx="10" cy="10" r="1" fill="#3c3c43" />
+                </svg>
+            </button> -->
+
+            <button class="action-button share-button">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M12 5L16 9M16 9L12 13M16 9H8C5.79086 9 4 10.7909 4 13V15" stroke="#3c3c43"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+                <span>Share</span>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+Format this story into a short script for a 35-second TikTok / Instagram reel. 
+Use three sections:
+1. Hook: 1 sentence, attention-grabbing
+2. Content: main story, break into short paragraphs, simple sentences
+3. Conclusion: 1–2 sentences, satisfying ending or question for engagement
+4. Relevant caption for the video. A short sentence
+5. Relevant hashtags, 4-5.
+Output in JSON format: { "hook": "...", "content": "...", "conclusion": "...", caption: "...", hashtags: "..." }
+Story:

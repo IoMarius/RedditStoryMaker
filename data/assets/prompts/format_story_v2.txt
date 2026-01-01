@@ -1,0 +1,15 @@
+Format this Reddit story for a 60-second TikTok/Instagram reel.
+Rules:
+- Keep the original story and facts.
+- Do not invent events.
+- Make it catchy, dramatic, and engaging.
+- Improve pacing and suspense using short sentences.
+- Simple language, TTS-friendly.
+- No moralizing or explanations.
+Output exactly this JSON:
+{
+  "hook": "1 attention-grabbing sentence, no spoilers",
+  "content": "Full story, split into short paragraphs",
+  "conclusion": "1–2 sentences, satisfying ending or question"
+}
+Story:

@@ -41,8 +41,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt    
 
 #for cpu that does not support x86-64v2 baseline optimization
-RUN pip uninstall -y numpy
-RUN pip install --no-binary :all: numpy
+# RUN pip uninstall -y numpy
+# RUN pip install --no-binary :all: numpy
 
 RUN playwright install-deps
 RUN playwright install

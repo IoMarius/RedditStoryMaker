@@ -29,7 +29,7 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
-          file: Dockerfile
+          file: ./src/Dockerfile
           context: ./src/
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ env.TAG }}

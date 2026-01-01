@@ -3,7 +3,7 @@ run-name: ${{ gitea.actor }} • ${{ gitea.event.head_commit.message }}
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 env:
   IMAGE_NAME: 192.168.1.3:5000/rsm

@@ -1,0 +1,11 @@
+services:
+  storymaker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: storymaker
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

@@ -26,6 +26,9 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     gnupg \
+    gcc \
+    g++ \
+    gfortran \
     && rm -rf /var/lib/apt/lists/*
 
 

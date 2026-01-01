@@ -24,7 +24,7 @@ jobs:
           echo "${{ secrets.RUNNER_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p 2222 ioserver.taild1c667.ts.net >> ~/.ssh/known_hosts
-          git clone --branch master --depth 1 ssh://git@ioserver.taild1c667.ts.net:2222/iomarius/RedditStoryMaker.git .
+          git clone --branch main --depth 1 ssh://git@ioserver.taild1c667.ts.net:2222/iomarius/RedditStoryMaker.git .
 
       - name: Build and push image
         uses: docker/build-push-action@v6

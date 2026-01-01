@@ -1,3 +1,5 @@
+![alt text](header.png)
+
 # StoryMaker
 Automatic reddit storytelling video generator.
 

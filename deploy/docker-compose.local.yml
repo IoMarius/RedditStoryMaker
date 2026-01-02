@@ -7,6 +7,7 @@ services:
     env_file:
       - stack.env
     environment:
+      DEPLOYED: false
       GPT_MODEL: gpt-4o-mini
       GPT_API_KEY: your-key
 

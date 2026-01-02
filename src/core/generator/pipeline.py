@@ -31,6 +31,7 @@ async def run_generation_pipeline_async(
         )
 
     except Exception as e:
+        await callback("Failed to generate. Pipeline error on last step.")
         logger.error("Pipeline failed.", exc_info=True)
         raise
 

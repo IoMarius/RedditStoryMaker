@@ -1,4 +1,5 @@
 import os
+from core import logger
 
 
 def get_data_path(relative_path: str) -> str:
@@ -11,7 +12,13 @@ def get_data_path(relative_path: str) -> str:
     Returns:
         The full path to the data resource
     """
-    if os.getenv("DEPLOYED", "false").lower() == "true":
-        return f"/app/data/{relative_path}"
+    deployed = os.getenv("DEPLOYED", "false").lower() == "true"
+    logger.info(f"get_data_path('{relative_path}'): DEPLOYED={deployed}, env value={os.getenv('DEPLOYED', 'NOT SET')}")
+    
+    if deployed:
+        path = f"/app/data/{relative_path}"
     else:
-        return f"./data/{relative_path}"
+        path = f"./data/{relative_path}"
+    
+    logger.info(f"  -> returning: {path}")
+    return path

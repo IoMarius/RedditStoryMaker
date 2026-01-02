@@ -3,6 +3,7 @@ from telegram.ext import ContextTypes
 from telegram.helpers import escape_markdown
 import core.generator as gen
 from .utils import Command
+from core.listings import has_unused_listings_async, run_fetch_stories_pipeline_async
 
 
 async def generate_from_stored_sub(
@@ -11,6 +12,7 @@ async def generate_from_stored_sub(
     async def callback(msg: str):
         await update.callback_query.edit_message_text(msg)
 
+    # TODO: check if it has stories to generate videos from
     result = await gen.run_generation_pipeline_async(parameter, callback)
     await callback("📹➡️ Sending video...")
 

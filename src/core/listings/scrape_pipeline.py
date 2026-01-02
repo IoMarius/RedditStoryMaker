@@ -45,6 +45,40 @@ def run_fetch_stories_pipeline(sub: Subreddit):
     logger.info(f"Listings pipeline ran successfully for r/{sub.name}")
 
 
+async def run_fetch_stories_pipeline_async(sub: Subreddit):
+    logger.info(f"Running listings pipeline for r/{sub.name}.")
+    last_state = load_scrape_state(sub.name)
+
+    if last_state:
+        sub.url = f"{sub.url}?after={last_state}"
+
+    response = requests.get(url=sub.url, headers=_get_headers())
+
+    fail_count = 0
+    if not response.ok:
+        if fail_count == 3:
+            raise Exception(f"Cannot fetch data for r/{sub.name}.")
+        logger.error(
+            f"Failed to fetch from r/{sub.name}. \nStatus code {response.status_code} Url: {sub.url}."
+        )
+        fail_count += 1
+        time.sleep(round(random.uniform(2, 6), 2))
+        return run_fetch_stories_pipeline(sub)
+
+    # time.sleep(100000)
+    json_data = response.json()
+
+    stories, after = parse_listing(json_data)
+
+    if stories:
+        append_listings_to_csv(stories, subreddit=sub.name)
+
+    if after:
+        save_scrape_state(subreddit=sub.name, after=after)
+
+    logger.info(f"Listings pipeline ran successfully for r/{sub.name}")
+
+
 def _get_headers():
     return {
         "Host": "www.reddit.com",

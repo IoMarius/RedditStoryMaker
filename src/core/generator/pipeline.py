@@ -1,9 +1,10 @@
 from pathlib import Path
 from typing import Callable
 from core import logger
+from core.listings import run_fetch_stories_pipeline
 from core.formatter import ai
 from core.thumbnail import generate_cover, generate_cover_async
-from core.listings import get_best_unused_story, mark_story_scraped
+from core.listings import get_best_unused_story, mark_story_scraped, has_unused_listings
 from core.text_to_speech import convert_to_speech_timestamped
 from core.video import save_random_segment, generate_reel, test_cover_on_video
 from models.reddit import PipelineResult, Story
@@ -14,7 +15,7 @@ Callback = Callable[[str], None]
 
 
 def run_generation_pipeline(sub_name: str, callback: Callback) -> None:
-    try:
+    try:        
         _run_pipeline(sub_name, callback)
     except Exception as e:
         logger.error("Pipeline failed.", exc_info=True)
@@ -25,6 +26,7 @@ async def run_generation_pipeline_async(
     sub_name: str, callback: Callback
 ) -> PipelineResult:
     try:
+        
         video_path, story = await _run_pipeline_async(sub_name, callback)
         return PipelineResult(
             video_path=video_path, caption=story.caption, hashtags=story.hashtags

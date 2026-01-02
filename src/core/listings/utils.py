@@ -10,15 +10,35 @@ from models import Subreddit
 
 
 def has_unused_listings(sub_name: str) -> bool:
-    path = f"{CSV_PATH}/{sub_name}/{sub_name}.csv"
+    csv_path = f"{CSV_PATH}/{sub_name}/{sub_name}.csv"
 
-    if not os.path.isfile(path):
+    if not os.path.isfile(csv_path):
         return False
 
-    with open(path, "r", encoding="utf-8") as f:
+    # Load scraped IDs from state (if present) and compare CSV ids
+    scraped_ids: set[str] = set()
+
+    if os.path.isfile(STATE_PATH):
+        with open(STATE_PATH, "r", encoding="utf-8") as f:
+            try:
+                states = json.load(f)
+            except json.JSONDecodeError:
+                states = []
+
+        for state in states:
+            if state.get("subreddit") == sub_name:
+                scraped_ids = set(state.get("scraped", []))
+                break
+
+    with open(csv_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row.get("used") == "0":
+            story_id = (row.get("id") or "").strip()
+            if not story_id:
+                continue
+
+            # If this CSV id is not present in scraped IDs, it's unused
+            if story_id not in scraped_ids:
                 return True
 
     return False

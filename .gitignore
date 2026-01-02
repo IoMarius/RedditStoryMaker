@@ -210,3 +210,4 @@ __marimo__/
 *.mp4
 *data/stories
 src/data/*json
+src/data/stories/*/*.csv

@@ -31,6 +31,7 @@ def run_fetch_stories_pipeline(sub: Subreddit):
         time.sleep(round(random.uniform(2, 6), 2))
         return run_fetch_stories_pipeline(sub)
 
+    time.sleep(100000)
     json_data = response.json()
 
     stories, after = parse_listing(json_data)

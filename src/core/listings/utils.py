@@ -26,20 +26,22 @@ def has_unused_listings(sub_name: str) -> bool:
 
 def get_subreddits() -> list[Subreddit]:
     logger.info(
-        f"Looking for subreddits.json, in: '{os.path.abspath(SUBREDDITS_PATH)}'.\n CWD is {os.getcwd()}."
-    )
+        f"Looking for subreddits.json, in: '{os.path.abspath(SUBREDDITS_PATH)}'."  
+    );
+    logger.info(f" CWD is {os.getcwd()}.");
     
     # with open(SUBREDDITS_PATH, "r", encoding="utf-8") as f:
     #     data = json.load(f)
+    
 
     subs = [];
-    for item in data.get("Subs", []):
-        name = item.get("Name")
-        url = item.get("Url")
-        if name and url:
-            subs.append(Subreddit(name=name, url=url))
+    # for item in data.get("Subs", []):
+    #     name = item.get("Name")
+    #     url = item.get("Url")
+    #     if name and url:
+    #         subs.append(Subreddit(name=name, url=url))
 
-    return subs
+    return [Subreddit("ibi", "https://shamir.com")]
 
 
 def get_best_unused_story(sub_name: str) -> Optional[RawStory]:

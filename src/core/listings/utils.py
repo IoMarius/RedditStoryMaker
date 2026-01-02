@@ -29,10 +29,10 @@ def get_subreddits() -> list[Subreddit]:
         f"Looking for subreddits.json, in: '{os.path.abspath(SUBREDDITS_PATH)}'.\n CWD is {os.getcwd()}."
     )
     
-    with open(SUBREDDITS_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    # with open(SUBREDDITS_PATH, "r", encoding="utf-8") as f:
+    #     data = json.load(f)
 
-    subs = []
+    subs = [];
     for item in data.get("Subs", []):
         name = item.get("Name")
         url = item.get("Url")

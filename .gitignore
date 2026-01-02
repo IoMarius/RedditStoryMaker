@@ -209,4 +209,4 @@ __marimo__/
 
 *.mp4
 *data/stories
-*data/*.json
+src/data/*json

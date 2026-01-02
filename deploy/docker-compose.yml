@@ -15,6 +15,8 @@ services:
     networks:
       - net-mesh
     environment:
+      DEPLOYED: true
+
       #openai
       GPT_MODEL: gpt-4o-mini
       GPT_API_KEY: your-key

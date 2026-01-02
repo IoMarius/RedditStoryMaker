@@ -1,6 +1,8 @@
-STATE_PATH = "./data/scrape_state.json"
-CSV_PATH = "./data/stories"
-SUBREDDITS_PATH = "./data/subreddits.json"
+from core.path_utils import get_data_path
+
+STATE_PATH = get_data_path("scrape_state.json")
+CSV_PATH = get_data_path("stories")
+SUBREDDITS_PATH = get_data_path("subreddits.json")
 CSV_FIELDS = [
     "id",
     "subreddit",

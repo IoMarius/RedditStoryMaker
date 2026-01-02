@@ -1,7 +1,8 @@
 import json
 import os
+from core.path_utils import get_data_path
 
-STATE_PATH = "./data/scrape_state.json"
+STATE_PATH = get_data_path("scrape_state.json")
 
 
 def load_scrape_state(subreddit: str):

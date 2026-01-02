@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import re
 from typing import Iterator
-from warnings import deprecated
+# from warnings import deprecated
 
 
 @dataclass
@@ -22,7 +22,7 @@ class Story:
     def to_string(self) -> str:
         return f"{self.hook}\n\n{self.content}\n\n{self.conclusion}"
 
-    @deprecated("Do not use. Use captions with timestamps.")
+    # @deprecated("Do not use. Use captions with timestamps.")
     def to_captions(
         self, total_duration: int = 60, words_per_chunk: int = 5
     ) -> list[tuple[str, int]]:

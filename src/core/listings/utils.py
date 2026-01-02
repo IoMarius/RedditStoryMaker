@@ -2,6 +2,7 @@ import json
 import os
 import csv
 from typing import Optional
+from core import logger
 
 from models.reddit import RawStory
 from .consts import CSV_PATH, SUBREDDITS_PATH, STATE_PATH
@@ -24,6 +25,9 @@ def has_unused_listings(sub_name: str) -> bool:
 
 
 def get_subreddits() -> list[Subreddit]:
+    logger.info(
+        f"Looking for subreddits.json, in: '{os.path(SUBREDDITS_PATH)}'.\n CWD is {os.getcwd()}."
+    )
     with open(SUBREDDITS_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -38,6 +42,7 @@ def get_subreddits() -> list[Subreddit]:
 
 
 def get_best_unused_story(sub_name: str) -> Optional[RawStory]:
+
     csv_path = f"{CSV_PATH}/{sub_name}/{sub_name}.csv"
 
     if not os.path.isfile(csv_path):

@@ -25,13 +25,6 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     wget \
     curl \
-    gnupg \
-    gcc \
-    make \
-    cmake \
-    g++ \
-    gfortran \
-    pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 
